@@ -45,5 +45,14 @@ export class BasePage {
     async getAttribute(elementBy: By, attribute: string): Promise<string> {
         return (await this.getElement(elementBy)).getAttribute(attribute);
     };
+
+    async clickWithJavaScript(elementBy: By): Promise<void> {
+        const element = await this.getElement(elementBy);
+        await this.driver.executeScript('arguments[0].click();', element);
+    };
+async scrollIntoView(elementBy: By): Promise<void> {
+        const element = await this.getElement(elementBy);
+        await this.driver.executeScript('arguments[0].scrollIntoView(true);', element);
+    };
 };
 
